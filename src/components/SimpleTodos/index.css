@@ -1,0 +1,41 @@
+/* Write your CSS here */
+.bg_container {
+  background-color: #ffc2a0;
+  height: 100vh;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Todos-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+  justify-content: center;
+  mi-height: 20vh;
+  width: 50%;
+}
+
+.todo-heading {
+  color: #ff8542;
+  text-align: center;
+}
+
+.todo-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 15px;
+}
+
+.delete-button {
+  background-color: #ffffff;
+  border: 1px solid #ff0b37;
+  color: #ff0b37;
+}
+.todo-items-container {
+}
