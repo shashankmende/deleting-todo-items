@@ -72,8 +72,8 @@ class SimpleTodos extends Component {
     return (
       <div className="bg_container">
         <div className="Todos-container">
-          <h1 className="todo-heading">Simple Todos</h1>
           <ul className="todo-items-container">
+            <h1 className="todo-heading">Simple Todos</h1>
             {userDetailsList.map(eachuser => (
               <TodoItemComponent
                 key={eachuser.id}
