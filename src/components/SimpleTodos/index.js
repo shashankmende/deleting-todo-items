@@ -1,6 +1,10 @@
 import {Component} from 'react'
 import './index.css'
 
+import {v4 as uuidv4} from 'uuid'
+
+import TodoItemComponent from '../TodoItem'
+
 const initialTodosList = [
   {
     id: 1,
@@ -36,27 +40,16 @@ const initialTodosList = [
   },
 ]
 
+const newList = initialTodosList.map(each => ({
+  ...each,
+  edit: false,
+  taskStatus: true,
+}))
+
 // Write your code here
 
-const TodoItemComponent = props => {
-  const {todo, deleteUser} = props
-  const {id, title} = todo
-  const onDelete = () => {
-    console.log('Delete button is clickeed', id)
-    deleteUser(id)
-  }
-  return (
-    <li className="todo-item">
-      <p>{title}</p>
-      <button type="button" className="delete-button" onClick={onDelete}>
-        Delete
-      </button>
-    </li>
-  )
-}
-
 class SimpleTodos extends Component {
-  state = {userDetailsList: initialTodosList}
+  state = {userDetailsList: newList, title: ''}
 
   deleteUser = uniqueNo => {
     console.log('unique No', uniqueNo)
@@ -67,18 +60,128 @@ class SimpleTodos extends Component {
     })
   }
 
-  render() {
+  onClickAddBtn = () => {
+    const {userDetailsList, title} = this.state
+
+    /*  const titleList = title.split(' ')
+    const numberOfTitles = titleList[titleList.length - 1]
+
+    console.log('number of titles', titleList, typeof parseInt(numberOfTitles))
+
+    const multipliedObjects = []
+    if (Number(numberOfTitles) !== 'NaN') {
+      for (let i = 0; i < numberOfTitles; i += 1) {
+        const newObject = {
+          id: uuidv4(),
+          title,
+          edit: false,
+          taskStatus: true,
+        }
+        multipliedObjects.push(newObject)
+      }
+      console.log('multiplied object', multipliedObjects)
+      this.setState({
+        userDetailsList: [...userDetailsList, ...multipliedObjects],
+      })
+    } else {
+      const newTodo = {
+        id: uuidv4(),
+        title,
+        edit: false,
+        taskStatus: true,
+      }
+      this.setState({
+        userDetailsList: [...userDetailsList, newTodo],
+        title: '',
+      })
+    }
+        */
+
+    const newTodo = {
+      id: uuidv4(),
+      title,
+      edit: false,
+      taskStatus: true,
+    }
+    this.setState({
+      userDetailsList: [...userDetailsList, newTodo],
+      title: '',
+    })
+  }
+
+  onChangeTitle = event => {
+    this.setState({
+      title: event.target.value,
+    })
+  }
+
+  updateBtnStatus = id => {
     const {userDetailsList} = this.state
+    this.setState({
+      userDetailsList: userDetailsList.map(each => {
+        if (each.id === id) {
+          return {...each, edit: !each.edit}
+        }
+        return each
+      }),
+    })
+  }
+
+  updateTitle = (id, title) => {
+    const {userDetailsList} = this.state
+    this.setState({
+      userDetailsList: userDetailsList.map(each => {
+        if (each.id === id) {
+          return {...each, title}
+        }
+        return each
+      }),
+    })
+  }
+
+  updateTaskStatus = (id, status) => {
+    const {userDetailsList} = this.state
+    this.setState({
+      userDetailsList: userDetailsList.map(each => {
+        if (each.id === id) {
+          return {...each, taskStatus: !status}
+        }
+        return each
+      }),
+    })
+  }
+
+  render() {
+    const {userDetailsList, title} = this.state
     return (
       <div className="bg_container">
         <div className="Todos-container">
           <ul className="todo-items-container">
             <h1 className="todo-heading">Simple Todos</h1>
+            <div className="input-container">
+              <input
+                type="text"
+                className="input"
+                onChange={this.onChangeTitle}
+                value={title}
+                placeholder="Enter Task..."
+              />
+              <button
+                type="button"
+                className="add-btn"
+                onClick={this.onClickAddBtn}
+              >
+                Add
+              </button>
+            </div>
             {userDetailsList.map(eachuser => (
               <TodoItemComponent
                 key={eachuser.id}
                 todo={eachuser}
                 deleteUser={this.deleteUser}
+                updateBtnStatus={this.updateBtnStatus}
+                updateTitle={this.updateTitle}
+                updateTaskStatus={this.updateTaskStatus}
               />
             ))}
           </ul>

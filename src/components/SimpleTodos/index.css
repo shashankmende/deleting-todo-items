@@ -1,7 +1,7 @@
 /* Write your CSS here */
 .bg_container {
   background-color: #ffc2a0;
-  height: 100vh;
+  min-height: 100vh;
   padding: 30px;
   display: flex;
   flex-direction: row;
@@ -18,31 +18,52 @@
 
   width: 50%;
 }
-
 .todo-heading {
   color: #ff8542;
   text-align: center;
 }
-
-.todo-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 15px;
+@media screen and (max-width: 565px) {
+  .Todos-container {
+    width: 100%;
+  }
 }
 
-.delete-button {
-  background-color: #ffffff;
-  border: 1px solid #ff0b37;
-  color: #ff0b37;
-  height: 40px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 400;
-  cursor: pointer;
-  outline: none;
-}
 .todo-items-container {
   background-color: #ffffff;
   border-radius: 15px;
+  flex-grow: 1;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+  height: 40px;
+}
+
+.input {
+  width: 350px;
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+*:focus {
+  outline: none;
+}
+
+.add-btn {
+  font-size: 15px;
+  font-family: 'Roboto';
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: blue;
+  color: white;
+  height: 38px;
+  border-radius: 7px;
+  margin-left: 10px;
 }

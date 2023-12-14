@@ -1,1 +1,61 @@
 /* Write your CSS here */
+.todo-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 15px;
+}
+@media screen and (max-width: 576px) {
+  .todo-item {
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+  .title {
+    font-size: 13px;
+  }
+}
+
+.delete-button {
+  background-color: #ffffff;
+  border: 1px solid #ff0b37;
+  color: #ff0b37;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  outline: none;
+}
+
+@media screen and (max-width: 576px) {
+  .delete-button {
+    height: 25px;
+    font-size: 10px;
+  }
+}
+
+.delete-edit {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.edit-input {
+  border: none;
+  flex-grow: 1;
+}
+
+.first-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.text-decrtan {
+  text-decoration: line-through;
+}
+
+.no-text-decrtn {
+  text-decoration: none;
+}
